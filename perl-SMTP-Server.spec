@@ -4,15 +4,15 @@
 #
 Name     : perl-SMTP-Server
 Version  : 1.1
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/M/MA/MACGYVER/SMTP-Server-1.1.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/M/MA/MACGYVER/SMTP-Server-1.1.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libn/libnet-smtp-server-perl/libnet-smtp-server-perl_1.1-6.debian.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
-Requires: perl-SMTP-Server-license
-Requires: perl-SMTP-Server-man
+Requires: perl-SMTP-Server-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 
 %description
 SMTP::Server
@@ -20,6 +20,15 @@ SMTP::Server
 This module is a complete, RFC 821 compliant, SMTP server implementation
 written entirely in Perl.  It has powerful extensively and customization
 facilities that allow for a variety of potential uses.
+
+%package dev
+Summary: dev components for the perl-SMTP-Server package.
+Group: Development
+Provides: perl-SMTP-Server-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-SMTP-Server package.
+
 
 %package license
 Summary: license components for the perl-SMTP-Server package.
@@ -29,19 +38,11 @@ Group: Default
 license components for the perl-SMTP-Server package.
 
 
-%package man
-Summary: man components for the perl-SMTP-Server package.
-Group: Default
-
-%description man
-man components for the perl-SMTP-Server package.
-
-
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n SMTP-Server-1.1
-mkdir -p %{_topdir}/BUILD/SMTP-Server-1.1/deblicense/
+cd ..
+%setup -q -T -D -n SMTP-Server-1.1 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/SMTP-Server-1.1/deblicense/
 
 %build
@@ -66,12 +67,12 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-SMTP-Server
-cp LICENSE %{buildroot}/usr/share/doc/perl-SMTP-Server/LICENSE
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-SMTP-Server
+cp LICENSE %{buildroot}/usr/share/package-licenses/perl-SMTP-Server/LICENSE
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -80,19 +81,19 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/Net/SMTP/Server.pm
-/usr/lib/perl5/site_perl/5.26.1/Net/SMTP/Server/Client.pm
-/usr/lib/perl5/site_perl/5.26.1/Net/SMTP/Server/Relay.pm
-/usr/lib/perl5/site_perl/5.26.1/auto/Net/SMTP/Server/Client/autosplit.ix
-/usr/lib/perl5/site_perl/5.26.1/auto/Net/SMTP/Server/Relay/autosplit.ix
-/usr/lib/perl5/site_perl/5.26.1/auto/Net/SMTP/Server/autosplit.ix
+/usr/lib/perl5/vendor_perl/5.26.1/Net/SMTP/Server.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Net/SMTP/Server/Client.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Net/SMTP/Server/Relay.pm
+/usr/lib/perl5/vendor_perl/5.26.1/auto/Net/SMTP/Server/Client/autosplit.ix
+/usr/lib/perl5/vendor_perl/5.26.1/auto/Net/SMTP/Server/Relay/autosplit.ix
+/usr/lib/perl5/vendor_perl/5.26.1/auto/Net/SMTP/Server/autosplit.ix
 
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-SMTP-Server/LICENSE
-
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Net::SMTP::Server.3
 /usr/share/man/man3/Net::SMTP::Server::Client.3
 /usr/share/man/man3/Net::SMTP::Server::Relay.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-SMTP-Server/LICENSE
