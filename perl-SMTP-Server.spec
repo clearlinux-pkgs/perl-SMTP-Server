@@ -81,12 +81,12 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.0/Net/SMTP/Server.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Net/SMTP/Server/Client.pm
-/usr/lib/perl5/vendor_perl/5.28.0/Net/SMTP/Server/Relay.pm
-/usr/lib/perl5/vendor_perl/5.28.0/auto/Net/SMTP/Server/Client/autosplit.ix
-/usr/lib/perl5/vendor_perl/5.28.0/auto/Net/SMTP/Server/Relay/autosplit.ix
-/usr/lib/perl5/vendor_perl/5.28.0/auto/Net/SMTP/Server/autosplit.ix
+/usr/lib/perl5/vendor_perl/5.28.1Net/SMTP/Server.pm
+/usr/lib/perl5/vendor_perl/5.28.1Net/SMTP/Server/Client.pm
+/usr/lib/perl5/vendor_perl/5.28.1Net/SMTP/Server/Relay.pm
+/usr/lib/perl5/vendor_perl/5.28.1auto/Net/SMTP/Server/Client/autosplit.ix
+/usr/lib/perl5/vendor_perl/5.28.1auto/Net/SMTP/Server/Relay/autosplit.ix
+/usr/lib/perl5/vendor_perl/5.28.1auto/Net/SMTP/Server/autosplit.ix
 
 %files dev
 %defattr(-,root,root,-)
