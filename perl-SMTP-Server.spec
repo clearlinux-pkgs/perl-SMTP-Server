@@ -4,7 +4,7 @@
 #
 Name     : perl-SMTP-Server
 Version  : 1.1
-Release  : 17
+Release  : 18
 URL      : https://cpan.metacpan.org/authors/id/M/MA/MACGYVER/SMTP-Server-1.1.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/M/MA/MACGYVER/SMTP-Server-1.1.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libn/libnet-smtp-server-perl/libnet-smtp-server-perl_1.1-6.debian.tar.xz
