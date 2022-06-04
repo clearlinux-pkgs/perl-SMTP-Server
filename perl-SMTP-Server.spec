@@ -4,7 +4,7 @@
 #
 Name     : perl-SMTP-Server
 Version  : 1.1
-Release  : 20
+Release  : 21
 URL      : https://cpan.metacpan.org/authors/id/M/MA/MACGYVER/SMTP-Server-1.1.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/M/MA/MACGYVER/SMTP-Server-1.1.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libn/libnet-smtp-server-perl/libnet-smtp-server-perl_1.1-6.debian.tar.xz
@@ -106,9 +106,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.34.0/Net/SMTP/Server.pm
-/usr/lib/perl5/vendor_perl/5.34.0/Net/SMTP/Server/Client.pm
-/usr/lib/perl5/vendor_perl/5.34.0/Net/SMTP/Server/Relay.pm
-/usr/lib/perl5/vendor_perl/5.34.0/auto/Net/SMTP/Server/Client/autosplit.ix
-/usr/lib/perl5/vendor_perl/5.34.0/auto/Net/SMTP/Server/Relay/autosplit.ix
-/usr/lib/perl5/vendor_perl/5.34.0/auto/Net/SMTP/Server/autosplit.ix
+/usr/lib/perl5/*
